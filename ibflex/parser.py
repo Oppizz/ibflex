@@ -12,7 +12,7 @@ import datetime
 import decimal
 import itertools
 import functools
-from typing import Tuple, Union, Optional, Any, Callable, Iterable
+from typing import Tuple, Union, Optional, Any, Callable, Iterable, cast
 
 from ibflex import Types, enums, utils
 
@@ -107,7 +107,7 @@ def parse(source) -> Types.FlexQueryResponse:
 
 def parse_element(
     elem: ET.Element
-) -> Union[Types.FlexElement, Tuple[Types.FlexElement, ...]]:
+) -> Optional[Union[Types.FlexElement, Tuple[Types.FlexElement, ...]]]:
     """Distinguish XML data element from container element; dispatch accordingly.
 
     Flex format stores data as XML element attributes, while container elements
@@ -150,8 +150,8 @@ def parse_element_container(elem: ET.Element) -> Tuple[Types.FlexElement, ...]:
 
     instances = tuple(parse_data_element(child) for child in elem)
     if _UNKNOWN_ATTRIBUTE_TOLERANCE:
-        instances = tuple(inst for inst in instances if inst is not None)
-    return instances
+        instances = cast(Tuple[Types.FlexElement, ...], tuple(inst for inst in instances if inst is not None))
+    return cast(Tuple[Types.FlexElement, ...], instances)
 
 
 def parse_data_element(
@@ -194,6 +194,7 @@ def parse_data_element(
     if contained_elements:
         assert elem.tag in ("FlexQueryResponse", "FlexStatement")
         if _UNKNOWN_ATTRIBUTE_TOLERANCE:
+            assert known is not None
             #  Filter out unknown or unparseable contained elements
             contained_elements = {
                 k: v for k, v in contained_elements.items()
