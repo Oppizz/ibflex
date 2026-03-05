@@ -8,16 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8]
+        python-version: ["3.11", "3.12"]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
     # - name: Cache pip
-    #   uses: actions/cache@v2
+    #   uses: actions/cache@v4
     #   with:
     #     path: ~/.cache/pip  # This path is specific to Ubuntu
     #     # Look to see if there is a cache hit for the corresponding requirements file
@@ -29,5 +29,5 @@ jobs:
       run: pip install -r requirements-development.txt
     - name: Static analysis with mypy
       run: mypy ibflex tests
-    - name: Test with nose
-      run: nosetests -dsv --with-coverage --cover-package ibflex tests/*.py
+    - name: Test with pytest
+      run: pytest -v --cov=ibflex tests/
