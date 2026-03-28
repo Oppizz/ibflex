@@ -5,16 +5,18 @@ Python parser for Interactive Brokers Flex XML statements
 **VENDORED PACKAGE NOTICE**
 ---------------------------
 
-This is a vendored and enhanced version of the original ibflex library by Christopher Singley
+This is a vendored and enhanced version of the forked ibflex library by vroonhof (https://github.com/vroonhof/ibflex). Original ibflex library by Christopher Singley
 (https://github.com/csingley/ibflex). 
 
 This fork 
+   * includes additional enum values for IBKR codes
+
+**README FROM FORK**
+This fork
    * includes additional data fields beyond the upstream version
    * incorporates similar improvements from robcohen/ibflex2
-   * includes an opt-in mechanism to be tolerant against IBKR adding new but unimportant attributes on a regular basis. 
+   * includes an opt-in mechanism to be tolerant against IBKR adding new but unimportant attributes on a regular basis.
 
-The version number 
-includes a "+vroonhof.vendored" suffix to distinguish it from the original package.
 
 **ORGINAL README**
 ------------------
