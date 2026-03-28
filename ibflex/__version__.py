@@ -17,7 +17,7 @@ __description__ = (
     "Parse Interactive Brokers Flex XML reports and convert to Python types"
 ),
 __url__ = "https://github.com/vroonhof/ibflex"
-__version__ = "0.16+vroonhof.vendored"
+__version__ = "0.16+vroonhof.oppizz.vendored"
 __author__ = "Christopher Singley"
 __author_email__ = "csingley@gmail.com"
 __license__ = "MIT"
