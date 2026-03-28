@@ -12,6 +12,7 @@ This fork
    * includes additional enum values for IBKR codes
 
 **README FROM FORK**
+
 This fork
    * includes additional data fields beyond the upstream version
    * incorporates similar improvements from robcohen/ibflex2
